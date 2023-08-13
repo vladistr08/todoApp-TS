@@ -1,0 +1,90 @@
+input createUserInput{
+    username: String!
+    password: String!
+    email: String
+}
+
+type createUserResult{
+    userId: String
+}
+
+input loginUserInput{
+    username: String!
+    password: String!
+}
+
+type User{
+    userId: String
+    username: String
+    password: String
+    email: String
+}
+
+type Todo{
+    todoId: String
+    userId: String
+    name: String
+    completed: Boolean
+    description: String
+    dueDate: String
+    priority: Int
+}
+
+type loginUserResult{
+    user: User
+}
+
+input getAllTodosFilter{
+    userId: String!
+}
+
+type getAllTodosResult{
+    items: [Todo]
+}
+
+input addTodoInput{
+    userId: String!
+    name: String!
+    description: String
+    completed: Boolean
+    priority: Int
+    dueDate: String
+}
+
+type addTodoResult{
+    todoId: String
+}
+
+input deleteTodoFilter{
+    todoId: String!
+}
+
+input todoPropsInput{
+    name: String
+    completed: Boolean
+    description: String
+    dueDate: String
+    priority: Int
+}
+
+input updateTodoInput{
+    todoId: String!
+    props: todoPropsInput
+}
+
+type Query{
+    loginUser(input: loginUserInput!): loginUserResult
+    getAllTodos(filter: getAllTodosFilter!): getAllTodosResult
+}
+
+type Mutation{
+    createUser(input: createUserInput!): createUserResult
+    addTodo(input: addTodoInput!): addTodoResult
+    deleteTodo(filter: deleteTodoFilter!): Boolean
+    updateTodo(input: updateTodoInput!): Todo
+}
+
+schema {
+    query: Query
+    mutation: Mutation
+}
