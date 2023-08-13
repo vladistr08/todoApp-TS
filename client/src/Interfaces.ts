@@ -1,8 +1,8 @@
 export interface ITask {
-    taskId: string
+    todoId: string
     userId?: string
-    taskName: string
-    deadline: string
+    name: string
+    dueDate: string
     description: string
     priority: number
     completed: boolean
